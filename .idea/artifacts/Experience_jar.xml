@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Experience:jar">
+    <output-path>$USER_HOME$/Documents/Minecraft/Development Server/plugins</output-path>
+    <root id="archive" name="Experience.jar">
+      <element id="module-output" name="Experience" />
+    </root>
+  </artifact>
+</component>
