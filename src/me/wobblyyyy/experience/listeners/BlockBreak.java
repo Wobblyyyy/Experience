@@ -10,13 +10,19 @@ public class BlockBreak implements Listener
 {
     Experience plugin;
     BlockBreakHandler handler;
+
     public BlockBreak (Experience plugin)
     {
         this.plugin = plugin;
         handler = new BlockBreakHandler(plugin);
     }
-    @EventHandler public void onBlockBreak (BlockBreakEvent event)
+
+    @EventHandler
+    public void onBlockBreak (BlockBreakEvent event)
     {
-        if (!event.isCancelled()) handler.handleBlockBreak(event);
+        if (!event.isCancelled())
+        {
+            handler.handleBlockBreak(event);
+        }
     }
 }

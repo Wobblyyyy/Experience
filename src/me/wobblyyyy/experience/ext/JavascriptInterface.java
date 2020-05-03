@@ -7,9 +7,10 @@ import java.io.InputStreamReader;
 
 public class JavascriptInterface
 {
+    public String path;
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
     Invocable invocable = (Invocable) engine;
-    public String path;
+
     public void setPath (String path)
     {
         this.path = path;

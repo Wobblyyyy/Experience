@@ -24,7 +24,8 @@ public class Experience extends JavaPlugin
     JavascriptInterface loginCounterInterface = new JavascriptInterface();
     JavascriptInterface playtimeInterface = new JavascriptInterface();
 
-    @Override public void onEnable ()
+    @Override
+    public void onEnable ()
     {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null)
         {
@@ -41,7 +42,9 @@ public class Experience extends JavaPlugin
         scheduleAutosave();
         schedulePlaytimeCounter();
     }
-    @Override public void onDisable ()
+
+    @Override
+    public void onDisable ()
     {
         writeAllJSON();
     }
@@ -53,6 +56,7 @@ public class Experience extends JavaPlugin
         loginCounterInterface.loadScripts("JSONObjects/PlayerJoin.js", "JSONInterface.js");
         playtimeInterface.loadScripts("JSONObjects/Playtime.js", "JSONInterface.js");
     }
+
     public void setAllPaths ()
     {
         engine.setPath("engine.json");
@@ -60,6 +64,7 @@ public class Experience extends JavaPlugin
         loginCounterInterface.setPath("logins.json");
         playtimeInterface.setPath("playtime.json");
     }
+
     public void readAllJSON ()
     {
         readJSONFromFile(engine);
@@ -67,6 +72,7 @@ public class Experience extends JavaPlugin
         readJSONFromFile(loginCounterInterface);
         readJSONFromFile(playtimeInterface);
     }
+
     public void writeAllJSON ()
     {
         writeJSONToFile(engine);
@@ -74,6 +80,7 @@ public class Experience extends JavaPlugin
         writeJSONToFile(loginCounterInterface);
         writeJSONToFile(playtimeInterface);
     }
+
     public void attachListeners ()
     {
         BlockBreak blockBreakListener = new BlockBreak(this);
@@ -97,14 +104,17 @@ public class Experience extends JavaPlugin
     {
         return engine;
     }
-    public JavascriptInterface getBlocksInterface()
+
+    public JavascriptInterface getBlocksInterface ()
     {
         return blocksInterface;
     }
+
     public JavascriptInterface getPlayerJoinInterface ()
     {
         return loginCounterInterface;
     }
+
     public JavascriptInterface getPlaytimeInterface ()
     {
         return playtimeInterface;
@@ -122,6 +132,7 @@ public class Experience extends JavaPlugin
             e.printStackTrace();
         }
     }
+
     public void readJSONFromFile (JavascriptInterface javascriptInterface)
     {
         String rawJSON = interfacing.readStringFromJSON(javascriptInterface.path);
@@ -130,9 +141,10 @@ public class Experience extends JavaPlugin
 
     public void scheduleAutosave ()
     {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("Experience")), new Runnable ()
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("Experience")), new Runnable()
         {
-            @Override public void run ()
+            @Override
+            public void run ()
             {
                 getLogger().info(ChatColor.GREEN + "Experience has auto-saved all JSON files.");
                 writeAllJSON();
@@ -142,9 +154,10 @@ public class Experience extends JavaPlugin
 
     public void schedulePlaytimeCounter ()
     {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("Experience")), new Runnable ()
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("Experience")), new Runnable()
         {
-            @Override public void run ()
+            @Override
+            public void run ()
             {
                 for (Player p : Bukkit.getServer().getOnlinePlayers())
                 {

@@ -10,35 +10,10 @@ import java.util.TreeMap;
 
 public class PlaceholderAPIInterface extends PlaceholderExpansion
 {
-    private Experience plugin;
-    public PlaceholderAPIInterface (Experience plugin)
-    {
-        this.plugin = plugin;
-    }
+    private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
 
-    @Override public boolean persist ()
+    static
     {
-        return true;
-    }
-    @Override public boolean canRegister ()
-    {
-        return true;
-    }
-    @Override public String getAuthor ()
-    {
-        return plugin.getDescription().getAuthors().toString();
-    }
-    @Override public String getIdentifier ()
-    {
-        return "experience";
-    }
-    @Override public String getVersion ()
-    {
-        return plugin.getDescription().getVersion();
-    }
-
-    private static final NavigableMap <Long, String> suffixes = new TreeMap<>();
-    static {
         suffixes.put(1_000L, "k");
         suffixes.put(1_000_000L, "m");
         suffixes.put(1_000_000_000L, "b");
@@ -46,11 +21,28 @@ public class PlaceholderAPIInterface extends PlaceholderExpansion
         suffixes.put(1_000_000_000_000_000L, "q");
         suffixes.put(1_000_000_000_000_000_000L, "Q");
     }
+
+    private Experience plugin;
+
+    public PlaceholderAPIInterface (Experience plugin)
+    {
+        this.plugin = plugin;
+    }
+
     public static String format (long value)
     {
-        if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
-        if (value < 0) return "-" + format(-value);
-        if (value < 1000) return Long.toString(value);
+        if (value == Long.MIN_VALUE)
+        {
+            return format(Long.MIN_VALUE + 1);
+        }
+        if (value < 0)
+        {
+            return "-" + format(-value);
+        }
+        if (value < 1000)
+        {
+            return Long.toString(value);
+        }
 
         Map.Entry<Long, String> e = suffixes.floorEntry(value);
         Long divideBy = e.getKey();
@@ -61,9 +53,43 @@ public class PlaceholderAPIInterface extends PlaceholderExpansion
         return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
     }
 
-    @Override public String onPlaceholderRequest (Player player, String identifier)
+    @Override
+    public boolean persist ()
     {
-        if (player == null) return "";
+        return true;
+    }
+
+    @Override
+    public boolean canRegister ()
+    {
+        return true;
+    }
+
+    @Override
+    public String getAuthor ()
+    {
+        return plugin.getDescription().getAuthors().toString();
+    }
+
+    @Override
+    public String getIdentifier ()
+    {
+        return "experience";
+    }
+
+    @Override
+    public String getVersion ()
+    {
+        return plugin.getDescription().getVersion();
+    }
+
+    @Override
+    public String onPlaceholderRequest (Player player, String identifier)
+    {
+        if (player == null)
+        {
+            return "";
+        }
         if (identifier.equals("blocksmined_pickaxes"))
         {
             return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[pickaxes][" + player.getName() + "]")));

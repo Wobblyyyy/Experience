@@ -1,4 +1,4 @@
 var JSONObject =
-    {
-        "playtime": {},
-    };
+        {
+            "playtime": {},
+        };

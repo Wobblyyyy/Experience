@@ -1,6 +1,6 @@
 var JSONObject =
-    {
-        "pickaxes": {},
-        "axes": {},
-        "shovels": {},
-    };
+        {
+            "pickaxes": {},
+            "axes": {},
+            "shovels": {},
+        };

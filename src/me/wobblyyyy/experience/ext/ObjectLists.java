@@ -37,13 +37,11 @@ public class ObjectLists
         put("IRON_PICKAXE", "Iron Pickaxe");
         put("STONE_PICKAXE", "Stone Pickaxe");
         put("WOODEN_PICKAXE", "Wooden Pickaxe");
-
         put("DIAMOND_AXE", "Diamond Axe");
         put("GOLD_AXE", "Golden Axe");
         put("IRON_AXE", "Iron Axe");
         put("STONE_AXE", "Stone Axe");
         put("WOODEN_AXE", "Wooden Axe");
-
         put("DIAMOND_SPADE", "Diamond Shovel");
         put("GOLD_SPADE", "Golden Shovel");
         put("IRON_SPADE", "Iron Shovel");

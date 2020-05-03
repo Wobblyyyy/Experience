@@ -8,11 +8,14 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerJoin implements Listener
 {
     Experience plugin;
+
     public PlayerJoin (Experience plugin)
     {
         this.plugin = plugin;
     }
-    @EventHandler public void onPlayerJoin (PlayerJoinEvent event)
+
+    @EventHandler
+    public void onPlayerJoin (PlayerJoinEvent event)
     {
         plugin.getPlayerJoinInterface().executeScriptFunction("incrementJSON", "[onPlayerJoin][" + event.getPlayer().getName() + "]", 1);
     }

@@ -10,7 +10,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class BlockBreakHandler
 {
     Experience plugin;
-    public BlockBreakHandler(Experience plugin)
+
+    public BlockBreakHandler (Experience plugin)
     {
         this.plugin = plugin;
     }
