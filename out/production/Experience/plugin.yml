@@ -1,5 +1,7 @@
 name: Experience
-version: 1.0.0
+version: 1.0.1
 author: Wobblyyyy
+api-version: "1.15"
 description: Experience plugin by Colin Robertson
 main: me.wobblyyyy.experience.Experience
+softdepend: ["PlaceholderAPI"]

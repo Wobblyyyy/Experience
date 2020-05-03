@@ -16,8 +16,10 @@ import java.util.Objects;
 
 public class Experience extends JavaPlugin
 {
+    Configuration configuration = new Configuration();
     ObjectLists objectLists = new ObjectLists();
     Interfacing interfacing = new Interfacing(getDataFolder() + File.separator);
+    JavascriptInterface engine = new JavascriptInterface();
     JavascriptInterface blocksInterface = new JavascriptInterface();
     JavascriptInterface loginCounterInterface = new JavascriptInterface();
     JavascriptInterface playtimeInterface = new JavascriptInterface();
@@ -41,30 +43,33 @@ public class Experience extends JavaPlugin
     }
     @Override public void onDisable ()
     {
-        writeJSONToFile(blocksInterface);
-        writeJSONToFile(loginCounterInterface);
+        writeAllJSON();
     }
 
     public void loadAllScripts ()
     {
+        engine.loadScripts("JSONObjects/Engine.js", "JSONInterface.js", "Engine.js");
         blocksInterface.loadScripts("JSONObjects/BlockBreak.js", "JSONInterface.js");
         loginCounterInterface.loadScripts("JSONObjects/PlayerJoin.js", "JSONInterface.js");
         playtimeInterface.loadScripts("JSONObjects/Playtime.js", "JSONInterface.js");
     }
     public void setAllPaths ()
     {
+        engine.setPath("engine.json");
         blocksInterface.setPath("blocks.json");
         loginCounterInterface.setPath("logins.json");
         playtimeInterface.setPath("playtime.json");
     }
     public void readAllJSON ()
     {
+        readJSONFromFile(engine);
         readJSONFromFile(blocksInterface);
         readJSONFromFile(loginCounterInterface);
         readJSONFromFile(playtimeInterface);
     }
     public void writeAllJSON ()
     {
+        writeJSONToFile(engine);
         writeJSONToFile(blocksInterface);
         writeJSONToFile(loginCounterInterface);
         writeJSONToFile(playtimeInterface);
@@ -78,11 +83,20 @@ public class Experience extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(playerJoinListener, this);
     }
 
+    public Configuration getConfiguration ()
+    {
+        return configuration;
+    }
+
     public ObjectLists getObjectLists ()
     {
         return objectLists;
     }
 
+    public JavascriptInterface getEngine ()
+    {
+        return engine;
+    }
     public JavascriptInterface getBlocksInterface()
     {
         return blocksInterface;

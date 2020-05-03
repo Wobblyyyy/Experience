@@ -66,11 +66,11 @@ public class PlaceholderAPIInterface extends PlaceholderExpansion
         if (player == null) return "";
         if (identifier.equals("blocksmined_pickaxes"))
         {
-            return format((long) Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[pickaxes][" + player.getName() + "]")));
+            return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[pickaxes][" + player.getName() + "]")));
         }
         if (identifier.equals("blocksmined_axes"))
         {
-            return format((long) Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[axes][" + player.getName() + "]")));
+            return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[axes][" + player.getName() + "]")));
         }
         if (identifier.equals("playtime"))
         {
@@ -80,7 +80,7 @@ public class PlaceholderAPIInterface extends PlaceholderExpansion
         }
         if (identifier.equals("blocksmined_shovels"))
         {
-            return format((long) Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[shovels][" + player.getName() + "]")));
+            return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[shovels][" + player.getName() + "]")));
         }
         return identifier;
     }

@@ -17,6 +17,6 @@ public class BlockBreak implements Listener
     }
     @EventHandler public void onBlockBreak (BlockBreakEvent event)
     {
-        handler.handleBlockBreak(event);
+        if (!event.isCancelled()) handler.handleBlockBreak(event);
     }
 }
