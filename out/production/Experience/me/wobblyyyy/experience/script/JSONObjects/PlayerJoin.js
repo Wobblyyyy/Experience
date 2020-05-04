@@ -1,4 +1,4 @@
 var JSONObject =
-    {
-        "onPlayerJoin": {},
-    };
+        {
+            "onPlayerJoin": {},
+        };

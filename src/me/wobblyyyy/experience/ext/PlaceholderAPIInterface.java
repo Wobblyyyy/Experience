@@ -90,24 +90,27 @@ public class PlaceholderAPIInterface extends PlaceholderExpansion
         {
             return "";
         }
-        if (identifier.equals("blocksmined_pickaxes"))
+        else if (identifier.equals("blocksmined_pickaxes"))
         {
             return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[pickaxes][" + player.getName() + "]")));
         }
-        if (identifier.equals("blocksmined_axes"))
+        else if (identifier.equals("blocksmined_axes"))
         {
             return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[axes][" + player.getName() + "]")));
         }
-        if (identifier.equals("playtime"))
+        else if (identifier.equals("playtime"))
         {
             int s = Integer.parseInt(plugin.getPlaytimeInterface().executeScriptFunction("readJSON", "[playtime][" + player.getName() + "]"));
             int days = (s / 60) / 24;
             return days + " days";
         }
-        if (identifier.equals("blocksmined_shovels"))
+        else if (identifier.equals("blocksmined_shovels"))
         {
             return format(Integer.parseInt(plugin.getBlocksInterface().executeScriptFunction("readJSON", "[shovels][" + player.getName() + "]")));
         }
-        return identifier;
+        else
+        {
+            return identifier;
+        }
     }
 }

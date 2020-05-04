@@ -5,3 +5,6 @@ api-version: "1.15"
 description: Experience plugin by Colin Robertson
 main: me.wobblyyyy.experience.Experience
 softdepend: ["PlaceholderAPI"]
+commands:
+  exp:
+    aliases: experience
