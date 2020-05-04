@@ -100,16 +100,7 @@ public class ObjectLists
         put(Material.COAL_ORE, 1.0);
         put(Material.IRON_ORE, 1.0);
         put(Material.DIAMOND_ORE, 0.5);
-    }};
-    public HashMap<Material, Boolean> fortunes = new HashMap<>()
-    {{
-        put(Material.COAL_ORE, true);
-        put(Material.DIAMOND_ORE, true);
-        put(Material.IRON_ORE, true);
-    }};
-    public HashMap<Material, Boolean> blockFortunes = new HashMap<>()
-    {{
-        put(Material.NETHERRACK, true);
-        put(Material.SANDSTONE, true);
+        put(Material.NETHERRACK, 1.0);
+        put(Material.SANDSTONE, 1.0);
     }};
 }
