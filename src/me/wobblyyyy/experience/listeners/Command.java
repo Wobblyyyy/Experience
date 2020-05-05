@@ -24,37 +24,50 @@ public class Command implements CommandExecutor
     @Override
     public boolean onCommand (CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args)
     {
-        if (label.equalsIgnoreCase("exp") || label.equalsIgnoreCase("experience"))
+        if (args.length > 0)
         {
-            if (args.length > 0)
+            switch (args[0])
             {
-                switch (args[0])
-                {
-                    case "enchant":
-                        switch (args[1])
-                        {
-                            case "autosmelt":
-                                Player player = Bukkit.getPlayer(args[2]);
-                                assert player != null;
-                                ItemStack item = player.getInventory().getItemInMainHand();
-                                ItemMeta meta = item.getItemMeta();
-                                assert meta != null;
-                                List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
-                                assert lore != null;
-                                lore.add(ChatColor.translateAlternateColorCodes('&', "&r&7Auto Smelting"));
-                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Enchanted item with Auto Smelting!"));
-                                meta.setLore(lore);
-                                item.setItemMeta(meta);
-                                item.addUnsafeEnchantment(plugin.getAutoSmelt(), 1);
-                                player.getInventory().setItemInMainHand(item);
-                                break;
-                            default:
-                                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Unknown enchantment: &c" + args[1]));
-                        }
-                        break;
-                    default:
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Unknown subcommand: &c" + args[0]));
-                }
+                case "player":
+                    break;
+                case "admin":
+                    switch (args[1])
+                    {
+                        case "enchant":
+                            switch (args[2])
+                            {
+                                case "autosmelt":
+                                case "autosmelting":
+                                    Player player = args.length > 3 && args[3] != null ? Bukkit.getPlayer(args[3]) : (Player) commandSender;
+                                    assert player != null;
+                                    ItemStack item = player.getInventory().getItemInMainHand();
+                                    ItemMeta meta = item.getItemMeta();
+                                    assert meta != null;
+                                    List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
+                                    assert lore != null;
+                                    if (!lore.contains(plugin.getAutoSmelt().lore))
+                                    {
+                                        lore.add(plugin.getAutoSmelt().lore);
+                                    }
+                                    meta.setLore(lore);
+                                    item.setItemMeta(meta);
+                                    item.addUnsafeEnchantment(plugin.getAutoSmelt(), 1);
+                                    player.getInventory().setItemInMainHand(item);
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Enchanted item with:&c " + args[2]));
+                                    break;
+                                default:
+                                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Unknown enchantment:&c " + args[2]));
+                            }
+                            break;
+                        case "deenchant":
+                            break;
+                        default:
+                            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Unknown subcommand: &c" + args[0]));
+                    }
+                    break;
+                default:
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cExperience &f&l> &7Unknown subcommand: &c" + args[0]));
+                    break;
             }
         }
         return true;

@@ -1,5 +1,6 @@
 package me.wobblyyyy.experience.extensions;
 
+import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
@@ -13,10 +14,12 @@ public class AutoSmelt extends Enchantment implements Listener
         super(key);
     }
 
+    public String lore = ChatColor.translateAlternateColorCodes('&', "&r&7Auto Smelting");
+
     @Override
     public String getName ()
     {
-        return "Block Fortune";
+        return "Auto Smelting";
     }
 
     @Override
